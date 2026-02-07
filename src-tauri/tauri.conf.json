@@ -1,0 +1,40 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "tauri-boilerplate",
+  "version": "0.1.0",
+  "identifier": "com.tauri-boilerplate.app",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:5173",
+    "beforeDevCommand": "bun run dev",
+    "beforeBuildCommand": "bun run build"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Tauri App",
+        "width": 1024,
+        "height": 768,
+        "minWidth": 640,
+        "minHeight": 480,
+        "resizable": true,
+        "fullscreen": false,
+        "center": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' asset: https://asset.localhost"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  }
+}
