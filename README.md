@@ -17,6 +17,10 @@
   <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License" />
 </p>
 
+<p align="center">
+  <img src="docs/assets/screenshot.png" alt="Snaggy screenshot" width="460" />
+</p>
+
 ---
 
 ## Getting Started
