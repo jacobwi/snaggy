@@ -98,7 +98,12 @@ export const useAuthStore = create<AuthState>((set) => ({
 
     if (!token || isTokenExpired(token)) {
       localStorage.removeItem(AUTH_CONFIG.tokenKey);
-      set({ user: null, token: null, isAuthenticated: false, isLoading: false });
+      set({
+        user: null,
+        token: null,
+        isAuthenticated: false,
+        isLoading: false,
+      });
       return;
     }
 

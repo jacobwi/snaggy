@@ -26,7 +26,7 @@ const MOCK_DELAY = 600;
  * Replace this function body with a real API call.
  */
 export async function mockLogin(
-  credentials: LoginCredentials
+  credentials: LoginCredentials,
 ): Promise<AuthResponse> {
   await new Promise((r) => setTimeout(r, MOCK_DELAY));
 
@@ -50,7 +50,7 @@ export async function mockLogin(
       name: user.name,
       iat: Math.floor(Date.now() / 1000),
       exp: Math.floor(Date.now() / 1000) + 60 * 60, // 1 hour
-    })
+    }),
   );
   const signature = btoa("mock-signature-do-not-trust");
 

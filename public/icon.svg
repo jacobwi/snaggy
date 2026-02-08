@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <rect width="512" height="512" rx="108" fill="#111111"/>
+  <g transform="translate(256,256)">
+    <!-- Magnet / hook shape representing "snagging" -->
+    <path d="M-60,-140 L-60,-20 A60,60 0 0,0 60,-20 L60,-140"
+          stroke="white" stroke-width="44" stroke-linecap="round" fill="none"/>
+    <!-- Left prong accent -->
+    <rect x="-82" y="-185" width="44" height="65" rx="10" fill="#3B82F6"/>
+    <!-- Right prong accent -->
+    <rect x="38" y="-185" width="44" height="65" rx="10" fill="#3B82F6"/>
+    <!-- Bottom dot - representing the grabbed asset -->
+    <circle cx="0" cy="80" r="24" fill="#3B82F6"/>
+    <!-- Download arrow hint -->
+    <path d="M0,115 L0,170 M-22,148 L0,170 L22,148"
+          stroke="white" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

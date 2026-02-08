@@ -1,92 +1,48 @@
 import { ThemeToggle } from "@/components/theme-toggle";
-import { UserMenu } from "@/components/user-menu";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { isAuthEnabled } from "@/lib/auth";
-import { Monitor, Globe, Zap } from "lucide-react";
-
-const appName = import.meta.env.VITE_APP_NAME || "Tauri App";
+import { UrlInput } from "@/components/url-input";
+import { ScanResults } from "@/components/scan-results";
+import { useScanStore } from "@/hooks/use-scan";
 
 function App() {
+  const { status, result } = useScanStore();
+  const hasResults = status === "done" && result;
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="flex h-14 items-center justify-between px-6">
-          <div className="flex items-center gap-2">
-            <Zap className="h-5 w-5 text-primary" />
-            <span className="font-semibold">{appName}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            {isAuthEnabled && <UserMenu />}
-            <ThemeToggle />
-          </div>
+      <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-xl">
+        <div className="mx-auto flex h-12 max-w-4xl items-center justify-between px-4">
+          <span className="text-sm font-semibold tracking-tight">snaggy</span>
+          <ThemeToggle />
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="mx-auto max-w-5xl px-6 py-12">
-        <div className="mb-12 text-center">
-          <h1 className="text-4xl font-bold tracking-tight mb-3">
-            Welcome to {appName}
-          </h1>
-          <p className="text-muted-foreground text-lg">
-            Built with Tauri v2, React, and shadcn/ui
-          </p>
+      <main className="mx-auto max-w-4xl px-4">
+        {/* Hero / Input */}
+        <div
+          className={`flex flex-col items-center transition-all duration-500 ease-out ${
+            hasResults ? "pb-8 pt-8" : "pb-0 pt-[20vh]"
+          }`}
+        >
+          {!hasResults && (
+            <div className="mb-8 text-center animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <h1 className="text-3xl font-bold tracking-tight">
+                Snag fonts & favicons
+              </h1>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Paste a URL to extract assets from any website
+              </p>
+            </div>
+          )}
+          <UrlInput compact={!!hasResults} />
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <Card>
-            <CardHeader>
-              <Monitor className="h-8 w-8 mb-2 text-primary" />
-              <CardTitle>Desktop Native</CardTitle>
-              <CardDescription>
-                Powered by Tauri v2 for lightweight, secure desktop apps with native system access.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button variant="outline" size="sm" className="w-full">
-                Explore
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <Globe className="h-8 w-8 mb-2 text-primary" />
-              <CardTitle>Web Ready</CardTitle>
-              <CardDescription>
-                Same codebase runs in the browser. Build once, deploy everywhere.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button variant="outline" size="sm" className="w-full">
-                Learn More
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <Zap className="h-8 w-8 mb-2 text-primary" />
-              <CardTitle>Fast & Modern</CardTitle>
-              <CardDescription>
-                Vite + React 19 + Tailwind v4 + shadcn/ui for a blazing fast dev experience.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button variant="outline" size="sm" className="w-full">
-                Get Started
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-
-        <div className="mt-12 text-center text-sm text-muted-foreground">
-          <p>
-            Edit <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">src/App.tsx</code> to start building your app.
-          </p>
-        </div>
+        {/* Results */}
+        {hasResults && (
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-24">
+            <ScanResults />
+          </div>
+        )}
       </main>
     </div>
   );

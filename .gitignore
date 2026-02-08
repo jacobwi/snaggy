@@ -5,8 +5,8 @@ node_modules/
 dist/
 dist-ssr/
 
-# Tauri
-src-tauri/target/
+# Rust / Tauri
+target/
 src-tauri/gen/
 
 # Environment files (keep .env.example)
@@ -23,6 +23,9 @@ npm-debug.log*
 yarn-debug.log*
 pnpm-debug.log*
 
+# Claude
+.claude/
+
 # Editor
 .vscode/*
 !.vscode/extensions.json
@@ -37,3 +40,4 @@ pnpm-debug.log*
 # OS
 .DS_Store
 Thumbs.db
+nul
